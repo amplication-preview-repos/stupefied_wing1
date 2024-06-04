@@ -1,0 +1,22 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  createdAt   DateTime        @default(now())
+  description String?
+  dueDate     DateTime?
+  id          String          @id @default(cuid())
+  status      EnumTaskStatus?
+  title       String?
+  updatedAt   DateTime        @updatedAt
+}
+
+enum EnumTaskStatus {
+  Option1
+}
